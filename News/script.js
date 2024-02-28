@@ -2,6 +2,10 @@ const apiKey = '9c7d4d856a514c6e8b95b3714fddf235';
 
 const blogContainer = document.getElementById("blog-container");
 
+const searchField = document.getElementById("search-input");
+
+const searchButton = document.getElementById("search-button");
+
 async function fetchRandomNews() {
     try{
         // const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&pageSize=10&apiKey=${apiKey}`
@@ -21,6 +25,47 @@ async function fetchRandomNews() {
         return [];
     }
 }
+
+
+async function fetchSearchNews(query) {
+    try
+    {
+        const apiUrlSearch = `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}&pageSize=10`
+        console.log('API Search URL should be ', apiUrlSearch);
+
+        const response = await fetch(apiUrlSearch);
+        const data = await response.json();
+        console.log("JSon response is ", data.articles);
+        
+        return data.articles;
+    }
+    catch(error)
+    {
+        console.log("Error feteching data", error);
+    }
+}
+
+
+searchButton.addEventListener("click", async ()=> {
+
+    try
+    {
+        const query = searchField.value.trim();
+        console.log(query);
+        
+        const articles = await fetchSearchNews(query);
+    
+        console.log("Articles Feteched Are ", articles);
+
+        displayBlogs(articles);
+    
+    }
+    catch(error)
+    {
+        console.log("Error feteching data", error);
+    }
+
+})
 
 
 function displayBlogs(articles) {

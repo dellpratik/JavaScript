@@ -43,7 +43,7 @@ async function searchImages() {
             imageLink.textContent = result.alt_description;
 
             imageWrapper.appendChild(image);
-            imageWrapper.appendChild(imageLink);
+            imageWrapper.appendChild(imageLink);            
             searchResults.appendChild(imageWrapper);
 
         });

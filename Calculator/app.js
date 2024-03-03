@@ -29,7 +29,7 @@ let equal = document.querySelector('.btn-equal');
     })
 
     clear.addEventListener('click', (eve)=> {
-        screen.value = 0;
+        screen.value = "";
     })
 
 })();
